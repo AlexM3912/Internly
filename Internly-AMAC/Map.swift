@@ -1,5 +1,6 @@
 import SwiftUI
 import MapKit
+import CoreLocation
 
 struct MapView: View {
     @State private var cameraPosition: MapCameraPosition = .region(
