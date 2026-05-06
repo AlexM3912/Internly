@@ -3,6 +3,8 @@ import MapKit
 import CoreLocation
 
 struct MapView: View {
+    @StateObject private var locationManager = LocationManager()
+
     @State private var cameraPosition: MapCameraPosition = .region(
         MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: 42.0883603, longitude: -87.9806265),
@@ -14,6 +16,16 @@ struct MapView: View {
         ZStack {
             Map(position: $cameraPosition)
                 .ignoresSafeArea()
+                .onReceive(locationManager.$location) { location in
+                    guard let location = location else { return }
+
+                    cameraPosition = .region(
+                        MKCoordinateRegion(
+                            center: location.coordinate,
+                            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                        )
+                    )
+                }
 
             Text("Internly")
                 .font(.system(size: 50, weight: .semibold))
@@ -27,7 +39,10 @@ struct MapView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
 
         }
+        .onAppear {
+            locationManager.requestPermission()
+            locationManager.startUpdating()
+        }
     }
 }
-//create it so from the adress we create the cordinates and then they get positioned on the map
 
