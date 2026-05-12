@@ -9,40 +9,40 @@ import SwiftUI
 
 struct Personalization: View{
     var body: some View{
-        VStack{
-            
+        NavigationStack{
             //recomneded place
-//            Button {
-//                //GoTo specific categories
-//            } label: {
-//                Text("CATEGORIES")
-//            }
-            NavigationStack{
+            
+            VStack{
+                
                 NavigationLink("Categories") {
                     Categories()
                 }
-                .navigationTitle("Main menu")
-                .frame(width: 200, height: 100, alignment: .center)
-                .foregroundStyle(.blue)
-                .border(Color.teal, width: 2)
+                .modifier(frameForCategories())
+                
+                
+                NavigationLink("Mood") {
+                    Mood()
+                }
+                .modifier(frameForCategories())
+                
+                NavigationLink("Suprise Me") {
+                    RandomPlace()
+                }
+                .modifier(frameForCategories())
+                //                NavigationLink("Search") {
+                //  ablew to search
+                //                }
+                //                .modifier(frameForCategories())
             }
-            Button {
-                //GoTo mood prefrences
-            } label: {
-                Text("Mood")
-            }
-            Button {
-                //GoTo random page
-            } label: {
-                Text("Suprise Me")
-            }
-            Button {
-                //GoTo random page
-            } label: {
-                Text("Searh")
-            }
-
-
+            .navigationTitle("Traventure")
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background( LinearGradient(
+                colors: [.yellow, .green, .yellow],
+                startPoint: .top,
+                endPoint: .bottom
+            ))
+            .ignoresSafeArea()
+            
         }
     }
 }

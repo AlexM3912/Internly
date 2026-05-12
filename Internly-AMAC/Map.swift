@@ -59,11 +59,11 @@ struct MapView: View {
                 MapCompass()
             }
             
-            Text("Internly")
+            Text("Traventure")
                 .font(.system(size: 50, weight: .semibold))
                 .foregroundStyle(
                     LinearGradient(
-                        colors: [.white, .purple, .black],
+                        colors: [.white, .green, .yellow],
                         startPoint: .top,
                         endPoint: .bottom
                     )
