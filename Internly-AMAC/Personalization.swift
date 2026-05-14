@@ -15,7 +15,7 @@ struct Personalization: View{
             VStack{
                 
                 NavigationLink("Categories") {
-                    Categories()
+                    Categories(selectedCategory: "Art Museum")
                 }
                 .modifier(frameForCategories())
                 

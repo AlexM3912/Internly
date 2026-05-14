@@ -13,82 +13,91 @@ struct MapView: View {
         )
     )
     
+    let theme: String
+    
     var body: some View {
-        ZStack {
-            Map(position: $cameraPosition) {
-                
-                UserAnnotation()
-                
-                ForEach(mapItems, id: \.self) { item in
-                    Annotation(item.name ?? "Place", coordinate: item.location.coordinate){
-                        VStack(spacing: 0) {
-                            if selectedItem == item {
-                                PlaceInfoBox(item: item)
-                                    .offset(y: -5)
-                                    .transition(.scale.combined(with: .opacity))
-                            }
-                            
-                            Image(systemName: "mappin.circle.fill")
-                                .font(.title)
-                                .foregroundStyle(.red)
-                                .background(Circle().fill(.white))
-                                .onTapGesture {
-                                    withAnimation(.spring()) {
-                                        selectedItem = (selectedItem == item) ? nil : item
-                                    }
+        VStack(spacing: 0) {
+            ZStack {
+                Map(position: $cameraPosition) {
+                    UserAnnotation()
+                    
+                    ForEach(mapItems, id: \.self) { item in
+                        Annotation(item.name ?? "Place", coordinate: item.location.coordinate){
+                            VStack(spacing: 0) {
+                                if selectedItem == item {
+                                    PlaceInfoBox(item: item)
+                                        .offset(y: -5)
+                                        .transition(.scale.combined(with: .opacity))
                                 }
+                                
+                                Image(systemName: "mappin.circle.fill")
+                                    .font(.title)
+                                    .foregroundStyle(.red)
+                                    .background(Circle().fill(.white))
+                                    .onTapGesture {
+                                        withAnimation(.spring()) {
+                                            selectedItem = (selectedItem == item) ? nil : item
+                                        }
+                                    }
+                            }
                         }
                     }
                 }
+                .ignoresSafeArea(edges: .top)
+                .onReceive(locationManager.$location) { location in
+                    guard let location = location else { return }
+                    
+                    let region = MKCoordinateRegion(
+                        center: location.coordinate,
+                        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                    )
+                    
+                    cameraPosition = .region(region)
+                    
+                    performSearch(for: theme, in: region)
+                }
+                .mapControls {
+                    MapUserLocationButton()
+                    MapCompass()
+                }
+                
+                Text("Traventure")
+                    .font(.system(size: 50, weight: .semibold))
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [.white, .green, .yellow],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                    .padding()
             }
-            .ignoresSafeArea()
-            .onReceive(locationManager.$location) { location in
-                guard let location = location else { return }
+            .onAppear{
+                locationManager.requestPermission()
+                locationManager.startUpdating()
+            }
+            
+            Button {
+                guard let location = locationManager.location else { return }
                 
                 let region = MKCoordinateRegion(
                     center: location.coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+                    span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
                 )
                 
                 cameraPosition = .region(region)
-                
-                performSearch(for: "Food", in: region)
+                performSearch(for: theme, in: region)
+            } label: {
+                Text("Perform Search")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(Color.blue)
             }
-            .mapControls {
-                MapUserLocationButton()
-                MapCompass()
-            }
-            
-            Text("Traventure")
-                .font(.system(size: 50, weight: .semibold))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [.white, .green, .yellow],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                )
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .onAppear{
-            locationManager.requestPermission()
-            locationManager.startUpdating()
-        }
-        Button {
-            guard let location = locationManager.location else { return }
-            
-            let region = MKCoordinateRegion(
-                center: location.coordinate,
-                span: MKCoordinateSpan(latitudeDelta: 0.02, longitudeDelta: 0.02)
-            )
-            
-            cameraPosition = .region(region)
-            performSearch(for: "Food", in: region)
-        } label: {
-            Text("Preform Search")
-        }
-
-}
+    }
     
     func performSearch(for category: String, in region: MKCoordinateRegion) {
         let request = MKLocalSearch.Request()
@@ -109,8 +118,6 @@ struct MapView: View {
             }
         }
     }
-    
-    
 }
 
 
