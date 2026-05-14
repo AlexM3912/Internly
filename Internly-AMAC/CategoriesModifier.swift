@@ -15,11 +15,12 @@
 
 import SwiftUI
 
-struct frameForCategories: ViewModifier {
+struct frameForTopics: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.headline)
-            .frame(width: 200, height: 100, alignment: .center)
+//            .buttonStyle(.glassProminent)
+            .frame(width: 100, height: 50, alignment: .center)
             .background(
                 RadialGradient(colors: [.white, .green], center: .top, startRadius: 5, endRadius: 150)
             )
@@ -30,7 +31,6 @@ struct frameForCategories: ViewModifier {
                     endPoint: .bottom
                 )
             )
-            .border(Color.green, width: 2)
             .clipShape(RoundedRectangle(cornerRadius: 30))
     }
 }

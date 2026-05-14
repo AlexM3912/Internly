@@ -88,6 +88,7 @@ struct MapView: View {
                 
                 cameraPosition = .region(region)
                 performSearch(for: theme, in: region)
+                print(theme)
             } label: {
                 Text("Perform Search")
                     .font(.headline)

@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct Personalization: View{
+    @State var path = NavigationPath()
+    @State private var category = "food"
     var body: some View{
-        NavigationStack{
+        NavigationStack(path: $path){
             //recomneded place
             
             VStack{
                 
-                NavigationLink("Categories") {
-                    Categories(selectedCategory: "Art Museum")
+                NavigationLink(value: "showCategories") {
+                    Text("Categories")
                 }
                 .modifier(frameForCategories())
                 
@@ -35,6 +37,14 @@ struct Personalization: View{
                 //                .modifier(frameForCategories())
             }
             .navigationTitle("Traventure")
+            .navigationDestination(for: String.self , destination: { value in
+                if value == "showCategories" {
+                    Categories()
+                        .navigationTitle("Choose a category")
+                } else {
+                    MapView(theme: value)
+                }
+            })
             .frame(maxWidth: .infinity,maxHeight: .infinity)
             .background( LinearGradient(
                 colors: [.yellow, .green, .yellow],
