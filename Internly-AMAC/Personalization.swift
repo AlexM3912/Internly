@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Personalization: View{
     @State var path = NavigationPath()
-    @State private var category = "food"
     var body: some View{
         NavigationStack(path: $path){
             //recomneded place

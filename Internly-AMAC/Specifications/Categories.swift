@@ -23,82 +23,126 @@ struct Categories: View{
                     NavigationLink(value: "Music") {
                         Text("Music")
                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Movie Theater") {
                         Text("Movie Theater")
                     }
+                    .modifier(frameForTopics())
+
                 }
                 Text("TheaterEducation")
                 HStack{
                     NavigationLink(value: "Library") {
                         Text("Library")
                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Planetarium") {
                         Text("Planetarium")
                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "School") {
                         Text("Schools")
                     }
+                    .modifier(frameForTopics())
+
                 }
                 Text("Safety")
                 HStack{
                     NavigationLink(value: "Fire Station") {
                                         Text("Fire Station")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Hospital") {
                                         Text("Hospital")
                                     }
+                    .modifier(frameForTopics())
+
                 }
                 Text("Post Office Transportation")
                 HStack{
                     NavigationLink(value: "Airport") {
                                         Text("Airport")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Marina") {
                                         Text("Boat dock")
                                     }
+                    .modifier(frameForTopics())
+
                 }
                 Text("Food")
                 HStack{
                     NavigationLink(value: "Food Market") {
                                         Text("Food Market")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Resteraunt") {
                                         Text("Resteraunt")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Store") {
                                         Text("Store")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Gas Station") {
                                         Text("Gas Station")
                                     }
+                    .modifier(frameForTopics())
+
                 }
                 Text("Parks")
                 HStack{
                     NavigationLink(value: "National Park") {
                                         Text("National Parks")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Park") {
                                         Text("Park")
                                     }
+                    .modifier(frameForTopics())
+
                     NavigationLink(value: "Zoo") {
-                                        Text("Zoo")
+                                        Text("Zoo") 
                                     }
+                    .modifier(frameForTopics())
+
                     Text("Other")
                     HStack{
                         NavigationLink(value: "Stadium") {
                                             Text("Stadium")
                                         }
+                        .modifier(frameForTopics())
+
                         NavigationLink(value: "Parking") {
                                             Text("Parking")
                                         }
+                        .modifier(frameForTopics())
+
                         NavigationLink(value: "Restrooms") {
                                             Text("Restrooms")
                                         }
-                        
+                        .modifier(frameForTopics())
+
+                                                
                     }
                 }
             }
         }
+        .frame(maxWidth: .infinity,maxHeight: .infinity)
+        .background( LinearGradient(
+            colors: [.yellow, .green, .yellow],
+            startPoint: .top,
+            endPoint: .bottom
+        ))
     }
 }
 

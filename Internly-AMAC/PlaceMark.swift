@@ -18,10 +18,21 @@ struct PlaceInfoBox: View {
                 .foregroundColor(.primary)
             
             if let address = item.address {
-                Text(address.fullAddress)
+                Text(address.shortAddress!)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
+            if let phoneNumber = item.phoneNumber{
+                Text(phoneNumber.count == 0 ? "No Phone Number" : phoneNumber)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+            if let website = item.url{
+                Link("Go To Website", destination: website)
+                .font(.caption)
+                .foregroundColor(.blue)
+            }
+            
         }
         .padding(10)
         .background(Color(UIColor.systemBackground))
