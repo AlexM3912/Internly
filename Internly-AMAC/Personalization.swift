@@ -26,8 +26,8 @@ struct Personalization: View{
                 }
                 .modifier(frameForCategories())
                 
-                NavigationLink("Suprise Me") {
-                    RandomPlace()
+                NavigationLink("Search") {
+                    Search(category: "")
                 }
                 .modifier(frameForCategories())
                 //                NavigationLink("Search") {
