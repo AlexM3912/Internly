@@ -21,8 +21,8 @@ struct Personalization: View{
                 .modifier(frameForCategories())
                 
                 
-                NavigationLink("Mood") {
-                    Mood()
+                NavigationLink(value: "Mood") {
+                    Text("Mood")
                 }
                 .modifier(frameForCategories())
                 
@@ -40,6 +40,9 @@ struct Personalization: View{
                 if value == "showCategories" {
                     Categories()
                         .navigationTitle("Choose a category")
+                } else if value == "Mood" {
+                    Mood()
+                        .navigationTitle("Choose a Mood")
                 } else {
                     MapView(theme: value)
                 }
