@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import AuthenticationServices
-
+//were not using this view 
 struct SignInView: View {
     var body: some View {
         SignInWithAppleButton(

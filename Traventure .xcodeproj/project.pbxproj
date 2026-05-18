@@ -199,7 +199,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7B382FA22FA3973400F1D11C /* Build configuration list for PBXProject "Internly-AMAC" */;
+			buildConfigurationList = 7B382FA22FA3973400F1D11C /* Build configuration list for PBXProject "Traventure " */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -558,7 +558,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7B382FA22FA3973400F1D11C /* Build configuration list for PBXProject "Internly-AMAC" */ = {
+		7B382FA22FA3973400F1D11C /* Build configuration list for PBXProject "Traventure " */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7B382FC62FA3973500F1D11C /* Debug */,

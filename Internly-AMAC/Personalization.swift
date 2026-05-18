@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct Personalization: View{
+    //this make a fluid path between the views and allows to change other values in the navigation links
     @State var path = NavigationPath()
     var body: some View{
         NavigationStack(path: $path){
-            //recomneded place
             
             VStack{
-                
+        //all the navigationlinks give a value which later using the navigation destination value that then changes the view
                 NavigationLink(value: "showCategories") {
                     Text("Categories")
                 }
@@ -30,13 +30,11 @@ struct Personalization: View{
                     Search(category: "")
                 }
                 .modifier(frameForCategories())
-                //                NavigationLink("Search") {
-                //  ablew to search
-                //                }
-                //                .modifier(frameForCategories())
+              
             }
             .navigationTitle("Traventure")
             .navigationDestination(for: String.self , destination: { value in
+                //when the value equals a certain value than the view gets changed
                 if value == "showCategories" {
                     Categories()
                         .navigationTitle("Choose a category")
@@ -44,6 +42,8 @@ struct Personalization: View{
                     Mood()
                         .navigationTitle("Choose a Mood")
                 } else {
+                    //the value is taken from the catorization view where it gets changed
+                    //and the same thing applys for mood
                     MapView(theme: value)
                 }
             })
@@ -53,6 +53,7 @@ struct Personalization: View{
                 startPoint: .top,
                 endPoint: .bottom
             ))
+            //this makes it span the entire screen
             .ignoresSafeArea()
             
         }

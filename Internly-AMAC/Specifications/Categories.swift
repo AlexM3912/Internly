@@ -14,6 +14,8 @@ struct Categories: View{
     var body: some View{
         ScrollView {
             VStack{
+        //creates navigation links with variables to each type of place, with the modifer we created beforee
+        //this all is in the navigationStack from the personalization view, as having multiple freaks out the app and makes thing lag and not work, it takes the value and gives it to personalization
                 Text("Arts and culture")
                 HStack{
                     NavigationLink(value: "Art Museum") {

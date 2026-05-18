@@ -14,7 +14,7 @@
 //
 
 import SwiftUI
-
+//modifier for the categories and moods
 struct frameForTopics: ViewModifier {
     func body(content: Content) -> some View {
         content

@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-//            MapView()
+            //Shows what view to show on the startup screen
             Personalization()
         }
         .padding()

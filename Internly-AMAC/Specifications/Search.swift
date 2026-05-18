@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct Search: View{
+    // states the category the user wants and then will switch to the map view
     @State var category: String
+    //tells weather or not the view should change, and only happens when the user submits the text field
     @State var shouldNavigate = false
     var body: some View{
         VStack{
@@ -21,9 +23,12 @@ struct Search: View{
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .border(Color.green)
                 .onSubmit {
+                    //says hey, we are ready to change the view
                     shouldNavigate = true
                 }
                 .navigationDestination(isPresented: $shouldNavigate) {
+                    //if we are ready to navigate(should navigate = true)
+                    //then change to the map with the category that you typed in
                     MapView(theme: category)
                 }
             

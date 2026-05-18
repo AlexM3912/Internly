@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Mood: View{
     var body: some View{
+        //creates navigation links with variables to each type of place, with the modifer we created beforee
         VStack{
             HStack{
                 NavigationLink(value: "Park") {

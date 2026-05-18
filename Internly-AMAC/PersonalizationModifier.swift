@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//modifier for the first screen
+
 struct frameForCategories: ViewModifier {
     func body(content: Content) -> some View {
         content
